@@ -9,7 +9,7 @@
     
     <title>
         
-            在linux上部署属于自己的gitlab站点 |
+            localStorage和sessionStorage的区别 |
         
         StephenX-hertz
     </title>
@@ -134,7 +134,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">在linux上部署属于自己的gitlab站点</span>
+                <span class="title-hover-animation">localStorage和sessionStorage的区别</span>
             </div>
 
             
@@ -156,13 +156,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-12-15 11:39:18</span>
-        <span class="mobile">2022-12-15 11:39</span>
+        <span class="pc">2022-12-15 13:25:13</span>
+        <span class="mobile">2022-12-15 13:25</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-15 11:41:35</span>
+        <span class="pc">2022-12-15 13:26:52</span>
     </span>
     
     
@@ -171,7 +171,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/gitlab/">gitlab</a>&nbsp;
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
                     </li>
                 
             </ul>
@@ -183,11 +187,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/gitlab/">gitlab</a>&nbsp;
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/linux/">linux</a>&nbsp;
+                        | <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
                     </li>
                 
             </ul>
@@ -206,27 +210,34 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h4 id="1-安装和配置必须的依赖项"><a href="#1-安装和配置必须的依赖项" class="headerlink" title="1. 安装和配置必须的依赖项"></a>1. 安装和配置必须的依赖项</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update sudo apt-get install -y curl openssh-server ca-certificates tzdata perl  </span><br></pre></td></tr></table></figure>
-
-<p>（可选）下一步，安装 Postfix 以发送电子邮件通知。如果您想使用其他解决方案发送电子邮件，请跳过此步骤并在安装极狐GitLab 后<a class="link"   target="_blank" rel="noopener" href="https://docs.gitlab.cn/omnibus/settings/smtp.html" >配置外部 SMTP 服务器<i class="fas fa-external-link-alt"></i></a>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y postfix  </span><br></pre></td></tr></table></figure>
-
-<p>在安装 Postfix 的过程中可能会出现一个配置界面，在该界面中选择“Internet Site”并按下回车。把“mail name”设置为您服务器的外部 DNS 域名并按下回车。如果还有其它配置界面出现，继续按下回车以接受默认配置。</p>
-<h4 id="2-下载-x2F-安装极狐GitLab"><a href="#2-下载-x2F-安装极狐GitLab" class="headerlink" title="2. 下载&#x2F;安装极狐GitLab"></a>2. 下载&#x2F;安装极狐GitLab</h4><p>配置极狐GitLab 软件源镜像。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://packages.gitlab.cn/repository/raw/scripts/setup.sh | /bin/bash  </span><br></pre></td></tr></table></figure>
-
-<p>接下来，安装极狐GitLab。确保您已正确<a class="link"   target="_blank" rel="noopener" href="https://docs.gitlab.cn/omnibus/settings/dns.html" >设置您的 DNS<i class="fas fa-external-link-alt"></i></a>，并更改 <a class="link"   target="_blank" rel="noopener" href="https://gitlab.example.com/" >https://gitlab.example.com<i class="fas fa-external-link-alt"></i></a> 为您要访问极狐GitLab 实例的 URL。安装包将在该 URL 上自动配置和启动极狐GitLab。</p>
-<p>对于 <code>https</code> 站点，极狐GitLab 将使用 Let’s Encrypt 自动请求 SSL 证书，这需要有效的主机名和入站 HTTP 访问。您也可以使用自己的证书或仅使用 <code>http://</code>（不带<code>s</code>）。</p>
-<p>如果您想为初始管理员用户(<code>root</code>)指定自定义密码，请查看<a class="link"   target="_blank" rel="noopener" href="https://docs.gitlab.cn/omnibus/installation/index.html#%E8%AE%BE%E7%BD%AE%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81" >文档<i class="fas fa-external-link-alt"></i></a>。如果未指定密码，将自动生成随机密码。</p>
-<p>执行如下命令开始安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gitlab-jh  </span><br></pre></td></tr></table></figure>
-
-<p>修改服务器地址，vim &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb</p>
-<p> external_url ‘<a class="link"   target="_blank" rel="noopener" href="http://192.168.0.110:60000/" >http://192.168.0.110:60000<i class="fas fa-external-link-alt"></i></a>‘</p>
-<p>同时也可以配置域名，gitlab设置external_url 默认不添加端口是占用80端口的，如果80端口被占用，一定要修改启动端口哦。</p>
-<p>（8）保存后，使用gitlab-ctl reconfigure重加载配置，时间可能稍久。<br>启动好后，访问我们配置的端口，就可以看到下面初始化管理员（root）密码的页面了。</p>
-<p>linux系统搭建gitlab详细：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46109609/article/details/110866302" >https://blog.csdn.net/m0_46109609/article/details/110866302<i class="fas fa-external-link-alt"></i></a></p>
-<p>docker上搭建jenkins：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/BThinker/article/details/124178670" >https://blog.csdn.net/BThinker/article/details/124178670<i class="fas fa-external-link-alt"></i></a></p>
+                <h2 id="localStorage和sessionStorage的区别"><a href="#localStorage和sessionStorage的区别" class="headerlink" title="localStorage和sessionStorage的区别"></a>localStorage和sessionStorage的区别</h2><ul>
+<li>localStorage和sessionStorage都是游览器用来存储客户端临时信息的对象</li>
+<li>两者都只能存储字符串类型的对象</li>
+<li>在生命周期方面：<ul>
+<li>localStorage是永久的，除非用户自己清除，否则localStorage的数据会一直存储在浏览器当中</li>
+<li>sessionStorage的生命周期取决于当前窗口或者标签页，一旦窗口或者标签页被关闭，对应的sessionStorage也会被清空</li>
+</ul>
+</li>
+<li>共享方面：<ul>
+<li>localStorage在不同页面同一个浏览器下，是可以共享的</li>
+<li>sessionStorage在不同页面下不能共享，除非属于同一个顶级窗口即同源页面。</li>
+</ul>
+</li>
+</ul>
+<h1 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h1><ul>
+<li>首先我们知道，tcp是面相连接的。当某一方向另一方发送数据之前都必须在双方宅男建立tcp连接。</li>
+<li>tcp连接是通过三次握手进行初始化的</li>
+<li>三次握手的目的就是为了同步对方的序列号和确认号。</li>
+<li>过程：<ul>
+<li>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x;然后，客户端进入SYN_SEND状态，等待服务器的确认;</li>
+<li>第二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1);同时，自己自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y;服务器端将上述所有信息放到一个报文段(即SYN+ACK报文段)中，一并发送给客户端，此时服务器进入SYN_RECV状态;</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</li>
+</ul>
+</li>
+</ul>
+<h1 id="TCP四次挥手可以被优化"><a href="#TCP四次挥手可以被优化" class="headerlink" title="TCP四次挥手可以被优化"></a>TCP四次挥手可以被优化</h1><p><strong>当服务器没有数据要发送给客户端的时候，tcp的四次挥手会被优化为三次</strong></p>
+<h1 id="TCP三次握手的目的"><a href="#TCP三次握手的目的" class="headerlink" title="TCP三次握手的目的"></a>TCP三次握手的目的</h1><p><strong>为了防止生效的连接请求报文被服务端接受</strong></p>
+<h1 id="为什么TCP握手不用两次"><a href="#为什么TCP握手不用两次" class="headerlink" title="为什么TCP握手不用两次"></a>为什么TCP握手不用两次</h1><p>如果只有两次握手，假设当客户端发送第一次连接请求由于网络拥塞的原因，迟迟未到服务端，客户端没接收到确认报文，认为服务端没有收到，于是重新发送请求报文并与服务端建立连接，等这次连接断开了，之前滞留的那个请求报文又到达了服务端，就会让服务端与客户端再次连接成功，这时服务端就会一直等待客户端发送请求，造成了资源的浪费。</p>
 
             </div>
 
@@ -236,11 +247,11 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/gitlab/">#gitlab</a>&nbsp;
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/linux/">#linux</a>&nbsp;
+                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">#浏览器</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -252,13 +263,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2022/12/15/%E5%85%B3%E4%BA%8Evue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8Ckeep-live/"
+                               href="/2022/12/15/%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8ETCP/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">VUE生命周期和keep-alive小总结</span>
+                                <span class="post-nav-title-item">一些关于TCP</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
@@ -268,10 +279,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/12/15/cookie/"
+                               href="/2022/12/15/websocket%E5%92%8CAjax%E7%9A%84%E5%8C%BA%E5%88%AB/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">关于cookie的一些特性</span>
+                                <span class="post-nav-title-item">websocket和Ajax的区别</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
