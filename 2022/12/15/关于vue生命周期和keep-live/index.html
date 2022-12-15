@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Croy">
+    
+    <title>
+        
+            VUE生命周期和keep-live小总结 |
+        
+        StephenX-hertz
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.jpg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               StephenX-hertz
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">VUE生命周期和keep-live小总结</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Croy</span>
+                            
+                                <span class="author-label">Lv1</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-12-15 11:43:57</span>
+        <span class="mobile">2022-12-15 11:43</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-12-15 11:47:03</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h1 id="Vue2-x生命周期"><a href="#Vue2-x生命周期" class="headerlink" title="Vue2.x生命周期"></a>Vue2.x生命周期</h1><h2 id="生命周期有哪些"><a href="#生命周期有哪些" class="headerlink" title="生命周期有哪些"></a>生命周期有哪些</h2><p><strong>vue自带的生命周期</strong></p>
+<ul>
+<li><strong>beforeCreate</strong>（创建前） 在数据观测和初始化事件还未开始</li>
+<li><strong>created</strong>（创建后） 完成数据观测，属性和方法的运算，初始化事件，$el属性还没有显示出来</li>
+<li><strong>beforeMount</strong>（载入前） 在挂载开始之前被调用，相关的render函数首次被调用。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。<ul>
+<li>个人理解：对页面或者组件内部的template（模板）进行编译，将其编译为html，同时要在该组件或者页面的整个声明周期中首次对data对象进行调用，然后将data对象的数据跟模板一起生成对应的html。</li>
+</ul>
+</li>
+<li><strong>mounted</strong>（载入后） 在el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。完成模板中的html渲染到html页面中。此过程中进行ajax交互。</li>
+<li><strong>beforeUpdate</strong>（更新前） 在数据更新之前调用，发生在虚拟DOM重新渲染和打补丁之前。可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程。</li>
+<li><strong>updated</strong>（更新后） 在由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。</li>
+<li><strong>beforeDestroy</strong>（销毁前） 在实例销毁之前调用。实例仍然完全可用。</li>
+<li><strong>destroyed</strong>（销毁后） 在实例销毁之后调用。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。</li>
+</ul>
+<h2 id="进入到页面或者组件的时候会执行哪些生命周期以及顺序"><a href="#进入到页面或者组件的时候会执行哪些生命周期以及顺序" class="headerlink" title="进入到页面或者组件的时候会执行哪些生命周期以及顺序"></a>进入到页面或者组件的时候会执行哪些生命周期以及顺序</h2><blockquote>
+<p><strong>当刚刚开始进入到页面或者组件的时候，在没有对页面或者组件进行其他操作的情况下，会执行beforeCreate、created、beforeMount、mounted。</strong></p>
+</blockquote>
+<h2 id="vue-中的-el，-data，-options，-refs-属性含义"><a href="#vue-中的-el，-data，-options，-refs-属性含义" class="headerlink" title="vue 中的$el，$data，$options，$refs 属性含义"></a>vue 中的$el，$data，$options，$refs 属性含义</h2><blockquote>
+<p><strong>vm.$el</strong></p>
+</blockquote>
+<ul>
+<li>获取Vue实例关联的DOM元素；</li>
+</ul>
+<blockquote>
+<p><strong>vm.$data</strong></p>
+</blockquote>
+<ul>
+<li>获取Vue实例的data选项（对象）</li>
+</ul>
+<blockquote>
+<p><strong>vm.$options</strong></p>
+</blockquote>
+<ul>
+<li>获取Vue实例的自定义属性（如vm.$options.methods,获取Vue实例的自定义属性methods）</li>
+</ul>
+<blockquote>
+<p><strong>vm.$refs</strong></p>
+</blockquote>
+<ul>
+<li>获取页面中所有含有ref属性的DOM元素（如vm.$refs.btn，获取页面中含有属性<code>ref = &quot;btn&quot;</code>的DOM元素，如果有多个元素，那么只返回最后一个）</li>
+</ul>
+<h2 id="在哪个阶段有-el-在哪个阶段会有-data"><a href="#在哪个阶段有-el-在哪个阶段会有-data" class="headerlink" title="在哪个阶段有$el,在哪个阶段会有$data"></a>在哪个阶段有$el,在哪个阶段会有$data</h2><ul>
+<li>首先$el代表着Vue实例所关联的Dom元素，$data代表着的是Vue实例所挂载的data对象</li>
+<li>然后我们知道在vue的生命周期中，在created阶段会对数据进行观测，所以在created阶段就会有$data的存在</li>
+<li>对于$el，由于在mounted被调用之前会将新创建的$el对象对原来的el挂载进行替换，所以真正意义上有$el的阶段是在mounted阶段</li>
+</ul>
+<h2 id="如果加入了keep-alive会多出两个生命周期"><a href="#如果加入了keep-alive会多出两个生命周期" class="headerlink" title="如果加入了keep-alive会多出两个生命周期"></a>如果加入了keep-alive会多出两个生命周期</h2><p>当我们的组件内部使用到<keep-alive>的时候会多出两个生命周期activated、deactivated</p>
+<h2 id="如果加入了keep-alive，第一次进入组件会执行哪些生命周期"><a href="#如果加入了keep-alive，第一次进入组件会执行哪些生命周期" class="headerlink" title="如果加入了keep-alive，第一次进入组件会执行哪些生命周期"></a>如果加入了keep-alive，第一次进入组件会执行哪些生命周期</h2><ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>activated</li>
+</ul>
+<h2 id="如果加入了keep-alive，第二次或者第n次进入该组件会执行哪些生命周期"><a href="#如果加入了keep-alive，第二次或者第n次进入该组件会执行哪些生命周期" class="headerlink" title="如果加入了keep-alive，第二次或者第n次进入该组件会执行哪些生命周期"></a>如果加入了keep-alive，第二次或者第n次进入该组件会执行哪些生命周期</h2><blockquote>
+<ul>
+<li>只会执行一个生命周期：activated</li>
+</ul>
+</blockquote>
+<h1 id="谈谈对keep-alive的了解"><a href="#谈谈对keep-alive的了解" class="headerlink" title="谈谈对keep-alive的了解"></a>谈谈对keep-alive的了解</h1><ul>
+<li>首先keep-alive是vue自带的一个组件</li>
+<li>功能：是用来缓存组件的，提升性能</li>
+<li>使用场景：<ul>
+<li>例如我们在一个列表点击进入详情页的场景下，会出现每次进入该小企业就需要请求该详情也对应的数据，但是为了性能考虑，减少多次点击同一个详情页多次请求同一个数据，我们就可以通过利用keep-alive来实现对组件的缓存，由于keep-alive在第一次进入的时候会执行beforeCreate、created、brforeMount、mounted、activated这几个生命周期，那么当第一次进入的时候在created阶段就对对应的列表项详情进行获取请求并标记，在后面重新进入该组件的时候由于该组件的生命周期不会再执行activated之前的操作了，所以就可以在activated阶段对标记进行比较如果是原来的列表项则不需要重新请求数据，如果与原来的列表项不同了则重新请求数据并更新标记，以此来提高性能。</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Vue/">#Vue</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/12/15/%E5%9C%A8linux%E4%B8%8A%E9%83%A8%E7%BD%B2%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84gitlab%E7%AB%99%E7%82%B9/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">在linux上部署属于自己的gitlab站点</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Croy</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
+</body>
+</html>

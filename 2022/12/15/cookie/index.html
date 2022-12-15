@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            关于cookie的一些特性 |
         
         StephenX-hertz
     </title>
@@ -134,7 +134,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">关于cookie的一些特性</span>
             </div>
 
             
@@ -156,16 +156,46 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-12-14 10:37:18</span>
-        <span class="mobile">2022-12-14 10:37</span>
+        <span class="pc">2022-12-15 11:34:26</span>
+        <span class="mobile">2022-12-15 11:34</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-14 10:37:18</span>
+        <span class="pc">2022-12-15 11:37:45</span>
     </span>
     
     
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/">网络相关</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/cookie/">cookie</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -180,24 +210,67 @@
             
 
             <div class="article-content keep-markdown-body">
-                <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+                <h1 id="什么是cookie"><a href="#什么是cookie" class="headerlink" title="什么是cookie"></a>什么是cookie</h1><ul>
+<li>cookie是由服务器端生成的通过请求发送给客户端的</li>
+<li>浏览器会将服务器端发送过来的cookie保存为某一个目录下的文件</li>
+<li>浏览器接收到cookie就会把这个cooki对象存入浏览器缓存中</li>
+<li>cookie实际上是一些信息，这些信息以文件的形式存储在客户端计算机上</li>
+</ul>
+<h1 id="cookie的生命周期"><a href="#cookie的生命周期" class="headerlink" title="cookie的生命周期"></a>cookie的生命周期</h1><ul>
+<li><p>如果不设置过去时间，则表示该cookie生命周期为浏览器会话期间，只要关闭了浏览器窗口，cookie就消失了</p>
+</li>
+<li><p>在手动情况下，可以设置浏览器接收的cookie存放在电脑硬盘中，那么cookie的有效时间可以为我们来设置。当我们设置好了这个时间，就算浏览器关闭了，cookie对象也不会被销毁。</p>
+</li>
+<li><p>设置cookie的有效时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.<span class="title function_">setMaxAge</span>(<span class="number">60</span>)   <span class="comment">//60秒</span></span><br></pre></td></tr></table></figure></li>
+<li><p>cookie的什么周期浏览器的会话时间的cookie被称为会话cookie</p>
+</li>
+<li><p>会话cookie一般不保存在硬盘上而是保存在内存中</p>
+</li>
+<li><p>如果设置了过期时间，那么浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie依然有效，除非超过了有效时间</p>
+</li>
+<li><p>存储在硬盘上的cookie可以在不同浏览器进程之间共享。</p>
+</li>
+</ul>
+<h1 id="cookie的分类"><a href="#cookie的分类" class="headerlink" title="cookie的分类"></a>cookie的分类</h1><ul>
+<li>如果创建了一个cookie，并将他发送到浏览器，默认情况下它是一个会话级别的cookie，存储在浏览器的内存中，用户退出浏览器之后被删除</li>
+<li>如果希望浏览器将cookie存储在磁盘上，则需要使用maxAge，并给出一个以秒为单位的时间</li>
+</ul>
+<h2 id="会话Cookie"><a href="#会话Cookie" class="headerlink" title="会话Cookie"></a>会话Cookie</h2><p>不设置过期时间，则表示这个cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，cookie就消失了。</p>
+<h2 id="持久Cookie"><a href="#持久Cookie" class="headerlink" title="持久Cookie"></a>持久Cookie</h2><p>设置了过期时间，浏览器就会把coolie保存到硬盘上，且不会随浏览器关闭而消失，除非用户手工清理或到了过期时间，关闭后再次打开浏览器。</p>
+<h1 id="cookie的存储"><a href="#cookie的存储" class="headerlink" title="cookie的存储"></a>cookie的存储</h1><ul>
+<li>cookie是类似存储在本机的</li>
+<li>cookie只能页面通过服务打开的情况下才可以使用。</li>
+<li>cookie存储的数据类型是字符串</li>
+<li>cookie存储是以域名区分的，不同域名的存储是无法共享的</li>
+</ul>
+<h1 id="cookie的缺点"><a href="#cookie的缺点" class="headerlink" title="cookie的缺点"></a>cookie的缺点</h1><ul>
+<li>cookie可能被禁用。当用户非常注重个人隐私保护时，他很可能禁用浏览器的cookie功能；</li>
+<li>cookie是与浏览器相关的。这意味着即使访问的是同一个页面，不同浏览器之间所保存的cookie也是不能互相访问的；</li>
+<li>cookie可能被删除。因为每个cookie都是硬盘上的一个文件，因此很有可能被用户删除；</li>
+<li>cookie安全性不够高。所有的cookie都是以纯文本的形式记录于文件中，因此如果要保存用户名密码等信息时，最好事先经过加密处理。</li>
+</ul>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/">#网络相关</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/cookie/">#cookie</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -206,18 +279,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2022/12/14/webpack/"
+                               href="/2022/12/15/%E5%9C%A8linux%E4%B8%8A%E9%83%A8%E7%BD%B2%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84gitlab%E7%AB%99%E7%82%B9/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">第一篇文章</span>
+                                <span class="post-nav-title-item">在linux上部署属于自己的gitlab站点</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/12/15/react/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">React</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             
