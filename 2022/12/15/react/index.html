@@ -31,8 +31,8 @@
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"header_transparent":false,"background_img":"/images/wallhaven-4v26pl.jpg","description":"真正的英雄主义 || 是在认清生活本质之后,依然热爱生活","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -42,7 +42,12 @@
 <body>
 <div class="progress-bar-container">
     
+        <span class="scroll-progress-bar"></span>
+    
 
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -90,9 +95,15 @@
                         </li>
                     
                     
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -197,6 +208,10 @@
     
     
     
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
@@ -621,6 +636,29 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
             </div>
 
             
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">React</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">Croy</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-12-15 11:29:13</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">2022/12/15/react/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
 
             
                 <ul class="post-tags-box">
@@ -674,8 +712,36 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
             
 
             
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+
+
+        
+    
+</div>
+
+                </div>
+            
         </div>
 
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-React"><span class="nav-number">1.</span> <span class="nav-text">Hello React</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSX%E8%AF%AD%E6%B3%95%E4%B8%8E%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">JSX语法与组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">JSX编写格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">JSX原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">JSX编译流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">Class组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">函数式组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">组件的样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">行内样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">外部样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">6.</span> <span class="nav-text">事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E8%8A%82%E7%82%B9%E6%A0%87%E7%AD%BE%E5%86%85%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="nav-number">6.1.</span> <span class="nav-text">在节点标签内定义函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8class%E7%BB%84%E4%BB%B6%E5%86%85"><span class="nav-number">6.2.</span> <span class="nav-text">在class组件内</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E6%99%AE%E9%80%9A%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.3.</span> <span class="nav-text">react事件绑定与普通的事件绑定的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EES6%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91"><span class="nav-number">7.</span> <span class="nav-text">关于ES6改变this指向</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#call"><span class="nav-number">7.1.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apply"><span class="nav-number">7.2.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind"><span class="nav-number">7.3.</span> <span class="nav-text">bind</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ref%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">Ref的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87ref%E8%8E%B7%E5%8F%96%E8%8A%82%E7%82%B9%E5%85%83%E7%B4%A0%E4%BF%A1%E6%81%AF"><span class="nav-number">8.1.</span> <span class="nav-text">通过ref获取节点元素信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E7%94%A8react-createRef-%E5%88%9B%E5%BB%BAref%E5%AF%B9%E8%B1%A1"><span class="nav-number">8.2.</span> <span class="nav-text">采用react.createRef()创建ref对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">组件数据挂载方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%EF%BC%88state%EF%BC%89"><span class="nav-number">9.1.</span> <span class="nav-text">状态（state）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81state"><span class="nav-number">9.1.1.</span> <span class="nav-text">什么是状态state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89state"><span class="nav-number">9.1.2.</span> <span class="nav-text">定义state</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8class%E7%BB%84%E4%BB%B6%E5%86%85%E7%9B%B4%E6%8E%A5%E5%A3%B0%E6%98%8Estate"><span class="nav-number">9.1.2.1.</span> <span class="nav-text">在class组件内直接声明state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%A3%B0%E6%98%8E"><span class="nav-number">9.1.2.2.</span> <span class="nav-text">通过构造方法声明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9state%E5%86%85%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F"><span class="nav-number">9.2.</span> <span class="nav-text">修改state内的数据变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84"><span class="nav-number">9.3.</span> <span class="nav-text">setState是异步的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9CsetState%E7%9A%84%E8%B0%83%E7%94%A8%E5%A4%84%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E9%80%BB%E8%BE%91%EF%BC%8C%E5%88%99%E4%BC%9A%E5%8F%98%E6%88%90%E5%90%8C%E6%AD%A5"><span class="nav-number">9.4.</span> <span class="nav-text">如果setState的调用处于一个异步逻辑，则会变成同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9CsetState%E7%9A%84%E8%B0%83%E7%94%A8%E5%A4%84%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%90%8C%E6%AD%A5%E9%80%BB%E8%BE%91%EF%BC%8C%E5%88%99%E4%BC%9A%E5%8F%98%E6%88%90%E5%BC%82%E6%AD%A5"><span class="nav-number">9.5.</span> <span class="nav-text">如果setState的调用处于一个同步逻辑，则会变成异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%82%E6%95%B0%E2%80%93%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">9.6.</span> <span class="nav-text">setState的第二个参数–回调函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6%E5%86%85%E7%9A%84state"><span class="nav-number">10.</span> <span class="nav-text">函数式组件内的state</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">11.</span> <span class="nav-text">列表渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0key"><span class="nav-number">11.1.</span> <span class="nav-text">添加key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%AF%B9array-map%E8%BF%98%E6%98%AF%E6%97%A0%E6%B3%95%E7%90%86%E8%A7%A3%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E4%BB%A5%E4%B8%8B%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">11.2.</span> <span class="nav-text">如果对array.map还是无法理解，可以执行以下的代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="nav-number">12.</span> <span class="nav-text">条件渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8E%BB%E5%AE%9E%E7%8E%B0"><span class="nav-number">12.1.</span> <span class="nav-text">通过三目运算符去实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%8E%A7%E5%88%B6hidden%E5%8E%BB%E5%AE%9E%E7%8E%B0"><span class="nav-number">12.2.</span> <span class="nav-text">通过控制hidden去实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dangerouslySetInnerHTML"><span class="nav-number">13.</span> <span class="nav-text">dangerouslySetInnerHTML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7-props"><span class="nav-number">14.</span> <span class="nav-text">属性(props)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E8%BE%93props"><span class="nav-number">14.1.</span> <span class="nav-text">如何向子组件传输props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E5%86%85%E6%8E%A5%E6%94%B6%E8%B0%83%E7%94%A8%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E8%BF%87%E6%9D%A5%E7%9A%84props"><span class="nav-number">14.2.</span> <span class="nav-text">如何在子组件内接收调用父组件传递过来的props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E9%99%90%E5%88%B6%E4%BC%A0%E8%BF%9B%E6%9D%A5%E7%9A%84props%E5%B1%9E%E6%80%A7%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">14.3.</span> <span class="nav-text">子组件中限制传进来的props属性的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9F%90%E4%B8%AAprops%E5%B1%9E%E6%80%A7%E5%BF%85%E9%A1%BB%E5%9C%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99%E7%BB%99%E5%85%B6%E4%BC%A0%E5%80%BC"><span class="nav-number">14.4.</span> <span class="nav-text">设置子组件的某个props属性必须在使用的时候给其传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">14.5.</span> <span class="nav-text">设置默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E5%80%BC%E7%9A%84%E6%97%B6%E5%80%99%E7%AE%80%E5%86%99"><span class="nav-number">14.6.</span> <span class="nav-text">传值的时候简写</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6%E5%86%85%E7%9A%84Props"><span class="nav-number">15.</span> <span class="nav-text">函数式组件内的Props</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Props-VS-state"><span class="nav-number">16.</span> <span class="nav-text">Props VS state</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="nav-number">16.1.</span> <span class="nav-text">相同点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="nav-number">16.2.</span> <span class="nav-text">不同点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state"><span class="nav-number">16.3.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Props"><span class="nav-number">16.4.</span> <span class="nav-text">Props</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E7%9A%84%E5%8F%97%E6%8E%A7%E4%B8%8E%E4%B8%8D%E5%8F%97%E6%8E%A7"><span class="nav-number">17.</span> <span class="nav-text">表单的受控与不受控</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">18.</span> <span class="nav-text">组件之间的通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">18.1.</span> <span class="nav-text">父子组件通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%BC%A0%E7%88%B6%E9%80%9A%E4%BF%A1%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">18.1.1.</span> <span class="nav-text">子传父通信的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E5%90%91%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC%EF%BC%9A"><span class="nav-number">18.1.1.1.</span> <span class="nav-text">如何实现子组件向父组件传值：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6%E5%90%91%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">18.1.2.</span> <span class="nav-text">子组件向父组件传值的具体实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">18.2.</span> <span class="nav-text">非父子组件通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="nav-number">18.2.1.</span> <span class="nav-text">状态提升（中间人模式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">18.2.2.</span> <span class="nav-text">发布订阅模式实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%9A%E7%BA%A7%E4%BC%A0%E9%80%92%EF%BC%88context%E7%8A%B6%E6%80%81%E6%95%B0%E4%BC%A0%E5%8F%82%EF%BC%89"><span class="nav-number">18.2.3.</span> <span class="nav-text">数据的多级传递（context状态数传参）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E4%B8%AD%E7%9A%84%E6%8F%92%E6%A7%BD"><span class="nav-number">19.</span> <span class="nav-text">React中的插槽</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">20.</span> <span class="nav-text">React的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Hooks"><span class="nav-number">21.</span> <span class="nav-text">React Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UseState"><span class="nav-number">21.1.</span> <span class="nav-text">UseState</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UseEffect"><span class="nav-number">21.2.</span> <span class="nav-text">UseEffect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96"><span class="nav-number">21.2.1.</span> <span class="nav-text">检测数据变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UseEffect%E5%87%BD%E6%95%B0%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%89%A7%E8%A1%8C%E5%91%A2%EF%BC%9F"><span class="nav-number">21.2.2.</span> <span class="nav-text">UseEffect函数什么时候执行呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9AUseEffect%E5%87%BD%E6%95%B0%E7%9B%91%E6%B5%8B%E7%9A%84state"><span class="nav-number">21.2.3.</span> <span class="nav-text">指定UseEffect函数监测的state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EUseEffect%E5%BA%94%E7%94%A8%E5%9C%A8%E7%BB%84%E4%BB%B6%E9%94%80%E6%AF%81"><span class="nav-number">21.2.4.</span> <span class="nav-text">关于UseEffect应用在组件销毁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useCallback%EF%BC%88%E8%AE%B0%E5%BF%86%E5%87%BD%E6%95%B0%EF%BC%89"><span class="nav-number">21.3.</span> <span class="nav-text">useCallback（记忆函数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useRef-%E4%BF%9D%E5%AD%98%E5%BC%95%E7%94%A8%E5%80%BC"><span class="nav-number">21.4.</span> <span class="nav-text">useRef(保存引用值)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useContext"><span class="nav-number">21.5.</span> <span class="nav-text">useContext</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
         
     </div>
 </div>
@@ -702,6 +768,17 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
             
         </div>
         
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
         </div>
@@ -719,8 +796,17 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
     <ul class="tools-list">
         <!-- TOC aside toggle -->
         
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
 
         <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
         
     </ul>
 </div>
@@ -747,10 +833,6 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
         
 
         
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
 
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
@@ -762,6 +844,11 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
             <i class="fas fa-cog fa-spin"></i>
         </li>
         
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
@@ -771,6 +858,35 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
     <img class="zoom-in-image">
 </div>
 
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
     
 
@@ -793,20 +909,70 @@ const [name,setName] = useState (0)  //创建一个State,类似于我们在类�
 
 
 
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
 
 
 
 
 
-<div class="post-scripts">
+<div class="post-scripts pjax">
     
         
 <script src="/js/post-helper.js"></script>
 
         
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
         
     
 </div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 

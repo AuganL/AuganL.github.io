@@ -31,8 +31,8 @@
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"header_transparent":false,"background_img":"/images/wallhaven-4v26pl.jpg","description":"真正的英雄主义 || 是在认清生活本质之后,依然热爱生活","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.5.2"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
   </script>
@@ -42,7 +42,12 @@
 <body>
 <div class="progress-bar-container">
     
+        <span class="scroll-progress-bar"></span>
+    
 
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -90,9 +95,15 @@
                         </li>
                     
                     
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -197,6 +208,10 @@
     
     
     
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
@@ -317,6 +332,29 @@
             </div>
 
             
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">关于webpack暴力笔记</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">Croy</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2022-12-14 11:42:36</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">2022/12/14/webpack/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
 
             
                 <ul class="post-tags-box">
@@ -355,8 +393,36 @@
             
 
             
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+
+
+        
+    
+</div>
+
+                </div>
+            
         </div>
 
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFwebpack"><span class="nav-number">1.</span> <span class="nav-text">什么是webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0webpack%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">简述webpack的工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E7%9A%84%E4%BA%94%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">webpack的五个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Entry%EF%BC%88%E5%85%A5%E5%8F%A3%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">Entry（入口）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output%EF%BC%88%E8%BE%93%E5%87%BA%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">Output（输出）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loader"><span class="nav-number">3.3.</span> <span class="nav-text">Loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugins"><span class="nav-number">3.4.</span> <span class="nav-text">Plugins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mode"><span class="nav-number">3.5.</span> <span class="nav-text">Mode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">运行指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">开发模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">生产模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">webpack配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css-loader"><span class="nav-number">6.</span> <span class="nav-text">css-loader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">7.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#devserver"><span class="nav-number">8.</span> <span class="nav-text">devserver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97"><span class="nav-number">9.</span> <span class="nav-text">资源模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E8%BE%93%E5%87%BA%E8%B7%AF%E5%BE%84"><span class="nav-number">9.1.</span> <span class="nav-text">设置资源模块打包输出路径</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E7%A6%BB%E5%92%8C%E5%8E%8B%E7%BC%A9css"><span class="nav-number">10.</span> <span class="nav-text">抽离和压缩css</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E7%A6%BBcss"><span class="nav-number">10.1.</span> <span class="nav-text">抽离css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E7%A6%BBcss%E7%9A%84%E6%97%B6%E5%80%99%E6%80%8E%E4%B9%88%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E5%9C%A8%E8%BE%93%E5%87%BA%E7%9B%AE%E5%BD%95%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-number">10.2.</span> <span class="nav-text">抽离css的时候怎么自定义文件在输出目录的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9css"><span class="nav-number">10.3.</span> <span class="nav-text">压缩css</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E7%A6%BB"><span class="nav-number">11.</span> <span class="nav-text">代码分离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E7%A6%BB%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">11.1.</span> <span class="nav-text">代码分离的三种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E5%8F%A3%E8%B5%B7%E7%82%B9%EF%BC%88%E9%80%9A%E8%BF%87entry%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E5%88%86%E7%A6%BB%EF%BC%89"><span class="nav-number">11.2.</span> <span class="nav-text">入口起点（通过entry实现代码分离）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D"><span class="nav-number">11.3.</span> <span class="nav-text">防止重复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8SplitChunksPlugin%E5%88%9B%E5%BB%BA%E6%8A%BD%E7%A6%BB%E5%87%BA%E5%85%B1%E4%BA%AB%E7%9A%84js%E6%96%87%E4%BB%B6"><span class="nav-number">11.3.1.</span> <span class="nav-text">使用SplitChunksPlugin创建抽离出共享的js文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5"><span class="nav-number">11.4.</span> <span class="nav-text">动态导入</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
         
     </div>
 </div>
@@ -383,6 +449,17 @@
             
         </div>
         
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
         </div>
@@ -400,8 +477,17 @@
     <ul class="tools-list">
         <!-- TOC aside toggle -->
         
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
 
         <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
         
     </ul>
 </div>
@@ -428,10 +514,6 @@
         
 
         
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
 
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
@@ -443,6 +525,11 @@
             <i class="fas fa-cog fa-spin"></i>
         </li>
         
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
@@ -452,6 +539,35 @@
     <img class="zoom-in-image">
 </div>
 
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
     
 
@@ -474,20 +590,70 @@
 
 
 
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
 
 
 
 
 
-<div class="post-scripts">
+<div class="post-scripts pjax">
     
         
 <script src="/js/post-helper.js"></script>
 
         
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
         
     
 </div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 
