@@ -9,7 +9,7 @@
     
     <title>
         
-            JavaScript的事件循环机制 |
+            Ubuntu设置Swap分区 |
         
         StephenX-hertz
     </title>
@@ -145,7 +145,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">JavaScript的事件循环机制</span>
+                <span class="title-hover-animation">Ubuntu设置Swap分区</span>
             </div>
 
             
@@ -167,13 +167,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-12-15 13:40:38</span>
-        <span class="mobile">2022-12-15 13:40</span>
+        <span class="pc">2022-12-16 16:41:10</span>
+        <span class="mobile">2022-12-16 16:41</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-15 13:43:17</span>
+        <span class="pc">2022-12-16 16:46:33</span>
     </span>
     
     
@@ -182,11 +182,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>&nbsp;
+                        &gt; <a href="/categories/Linux/ubuntu/">ubuntu</a>&nbsp;
                     </li>
                 
             </ul>
@@ -198,19 +198,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/JavaScript/">JavaScript</a>&nbsp;
+                        | <a href="/tags/ubuntu/">ubuntu</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>&nbsp;
+                        | <a href="/tags/swap%E5%88%86%E5%8C%BA/">swap分区</a>&nbsp;
                     </li>
                 
             </ul>
@@ -233,36 +229,55 @@
             
 
             <div class="article-content keep-markdown-body">
-                <ul>
-<li>首先，JavaScript是单线程解释性的语言，那么在执行一段js程序的时候，当遇到异步任务&#x2F;耗时任务，那么这段程序就停下来等待耗时任务执行完成后再继续执行后续的程序，那么就会造成阻塞等待的问题。</li>
-<li>所以JavaScript引入了事件循环机制来处理这一问题</li>
-<li>JavaScript讲一段程序中的任务分为同步任务和异步任务</li>
-<li>当一段JavaScript程序被执行的时候，会将同步任务放入主线程形成一个执行栈，当遇到异步任务的时候，则将异步任务放入等待队列，等待同步任务的执行栈执行完再执行等待队列中的异步任务，如此进行循环，就被称为事件循环机制</li>
-<li>事件队列</li>
-</ul>
-<blockquote>
-<p>对于一段JavaScript程序，会存在同步任务和异步任务，由于JavaScript是单线程的，则会在执行到异步任务的时候，会发生阻塞进程，等待异步任务执行完成后再执行后续的程序，为了解决这一问题，引入了事件循环机制，也就是，执行一段JavaScript程序的时候，将同步任务放入主线程中形成一个执行栈，将异步任务放入等待队列，当一个同步任务的执行栈执行完后，在对该同步任务的异步任务执行，如此的一个循环过程，就被称为事件循环。</p>
-<p>对于异步任务，被分为宏任务和微任务，宏任务是由浏览器规定的，微任务是由es6语法规定的。</p>
-<p>一般会先执行微任务然后再执行宏任务</p>
-<p>宏任务包括：</p>
-<ol>
-<li><code>script</code>全部代码</li>
-<li><code>setTimeout</code></li>
-<li><code>setInterval</code></li>
-<li>ajax</li>
-<li>dom事件</li>
-<li>&#96;&#96;setImmediate&#96;（浏览器暂时不支持，只有IE10支持）</li>
-<li><code>I/O</code> </li>
-<li><code>UI Rendering</code></li>
-</ol>
-<p>微任务包括：</p>
-<ol>
-<li>promise</li>
-<li>async</li>
-<li>await</li>
-</ol>
-</blockquote>
+                <h2 id="查看系统是否配置Swap"><a href="#查看系统是否配置Swap" class="headerlink" title="查看系统是否配置Swap"></a>查看系统是否配置Swap</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon --<span class="keyword">show</span></span><br></pre></td></tr></table></figure>
 
+<p>如果没有任何输出，表明系统没有配置swap</p>
+<h2 id="查看系统存储空间"><a href="#查看系统存储空间" class="headerlink" title="查看系统存储空间"></a>查看系统存储空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<p>确保有足够的空间创建Swap分区</p>
+<h2 id="创建分区文件"><a href="#创建分区文件" class="headerlink" title="创建分区文件"></a>创建分区文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 1G /swapfile</span><br></pre></td></tr></table></figure>
+
+<p>以上命令会在根目录创建大小为1G的文件，大小可根据需要进行调整，一般取和内存一般大小</p>
+<h2 id="验证是否创建成功"><a href="#验证是否创建成功" class="headerlink" title="验证是否创建成功"></a>验证是否创建成功</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lh /swapfile</span><br><span class="line"><span class="comment"># output -rw-r--r-- 1 root root 1.0G Sep 14 13:02 /swapfile</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启用分区"><a href="#启用分区" class="headerlink" title="启用分区"></a>启用分区</h2><p>修改分区文件的权限，只允许<code>root</code>用户进行读取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile</span><br><span class="line"><span class="built_in">ls</span> -lh /swapfile</span><br><span class="line"><span class="comment"># output -rw------- 1 root root 1.0G Sep 14 13:02 /swapfile</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="将其标记为swap分区"><a href="#将其标记为swap分区" class="headerlink" title="将其标记为swap分区"></a>将其标记为swap分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="启用分区，允许系统开始使用"><a href="#启用分区，允许系统开始使用" class="headerlink" title="启用分区，允许系统开始使用"></a>启用分区，允许系统开始使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="再次检查系统分区"><a href="#再次检查系统分区" class="headerlink" title="再次检查系统分区"></a>再次检查系统分区</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon --<span class="keyword">show</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="如果输出类似"><a href="#如果输出类似" class="headerlink" title="如果输出类似"></a>如果输出类似</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME      TYPE  SIZE USED PRIO</span><br><span class="line">/swapfile file 1024M   0B   -2</span><br></pre></td></tr></table></figure>
+
+<p>表示分区已经创建成功</p>
+<h2 id="将分区持久化"><a href="#将分区持久化" class="headerlink" title="将分区持久化"></a>将分区持久化</h2><p>目前已经在当前会话的启用的swap分区，但是如果系统重新启动，分区就会消失，我们可以通过修改<code>/etc/fstab</code>的配置来使分区持久化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<h2 id="调整swap分区配置"><a href="#调整swap分区配置" class="headerlink" title="调整swap分区配置"></a>调整swap分区配置</h2><p><code>swappiness</code>参数配置系统使用swap分区的频率，数字越小，系统对swap的依赖越小，如果设置为接近0的数字，那么内核只有在绝对必要情况下才会将数据交换到磁盘。应为和硬盘交换数据比RAM慢的多，所以这个数字越小，通常会让系统加快</p>
+<h2 id="swappiness配置"><a href="#swappiness配置" class="headerlink" title="swappiness配置"></a>swappiness配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/sys/vm/swappiness</span><br><span class="line"><span class="comment"># output 60</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="临时修改swappiness"><a href="#临时修改swappiness" class="headerlink" title="临时修改swappiness"></a>临时修改swappiness</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl vm.swappiness=10</span><br></pre></td></tr></table></figure>
+
+<h3 id="永久修改-推荐"><a href="#永久修改-推荐" class="headerlink" title="永久修改(推荐)"></a>永久修改(推荐)</h3><p><strong>&#x2F;etc&#x2F;sysctl.conf</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc</span><br><span class="line">sudo vim sysctl.conf</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编辑sysctl.conf</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vm</span>.swappiness=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="调整缓存设置"><a href="#调整缓存设置" class="headerlink" title="调整缓存设置"></a>调整缓存设置</h2><p>增大<code>vfs_cache_pressure</code>的值会让系统倾向于删除缓存中inode和dentry信息，进而导致系统频繁访问文件系统，我们可以通过输入以下内容将其设置为更保守的设置，例如50：</p>
+<h3 id="只在当前会话生效"><a href="#只在当前会话生效" class="headerlink" title="只在当前会话生效"></a>只在当前会话生效</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl vm.vfs_cache_pressure=50</span><br></pre></td></tr></table></figure>
+
+<h3 id="永久修改-推荐-1"><a href="#永久修改-推荐-1" class="headerlink" title="永久修改(推荐)"></a>永久修改(推荐)</h3><p><strong>&#x2F;etc&#x2F;sysctl.conf</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc</span><br><span class="line">sudo vim sysctl.conf</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>添加以下配置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.vfs_cache_pressure=50</span><br></pre></td></tr></table></figure>
             </div>
 
             
@@ -270,16 +285,16 @@
                     <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
         <li>
-            <span class="type">Post title</span>：<span class="content">JavaScript的事件循环机制</span>
+            <span class="type">Post title</span>：<span class="content">Ubuntu设置Swap分区</span>
         </li>
         <li>
             <span class="type">Post author</span>：<span class="content">Croy</span>
         </li>
         <li>
-            <span class="type">Create time</span>：<span class="content">2022-12-15 13:40:38</span>
+            <span class="type">Create time</span>：<span class="content">2022-12-16 16:41:10</span>
         </li>
         <li class="post-link">
-            <span class="type">Post link</span>：<span class="content">2022/12/15/JavaScript的事件循环机制/</span>
+            <span class="type">Post link</span>：<span class="content">2022/12/16/设置swep分区/</span>
         </li>
         <li>
             <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
@@ -294,19 +309,15 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                            <a href="/tags/Linux/">#Linux</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/JavaScript/">#JavaScript</a>&nbsp;
+                            <a href="/tags/ubuntu/">#ubuntu</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">#浏览器</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">#事件循环</a>&nbsp;
+                            <a href="/tags/swap%E5%88%86%E5%8C%BA/">#swap分区</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -315,29 +326,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2022/12/16/%E8%AE%BE%E7%BD%AEswep%E5%88%86%E5%8C%BA/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">Ubuntu设置Swap分区</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/12/15/Token%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7/"
+                               href="/2022/12/15/JavaScript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Token一些特性</span>
+                                <span class="post-nav-title-item">JavaScript的事件循环机制</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -375,7 +371,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AESwap"><span class="nav-number">1.</span> <span class="nav-text">查看系统是否配置Swap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">查看系统存储空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E5%8C%BA%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">创建分区文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E5%88%9B%E5%BB%BA%E6%88%90%E5%8A%9F"><span class="nav-number">4.</span> <span class="nav-text">验证是否创建成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E5%88%86%E5%8C%BA"><span class="nav-number">5.</span> <span class="nav-text">启用分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%85%B6%E6%A0%87%E8%AE%B0%E4%B8%BAswap%E5%88%86%E5%8C%BA"><span class="nav-number">6.</span> <span class="nav-text">将其标记为swap分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E5%88%86%E5%8C%BA%EF%BC%8C%E5%85%81%E8%AE%B8%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">启用分区，允许系统开始使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E6%AC%A1%E6%A3%80%E6%9F%A5%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA"><span class="nav-number">8.</span> <span class="nav-text">再次检查系统分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%BE%93%E5%87%BA%E7%B1%BB%E4%BC%BC"><span class="nav-number">9.</span> <span class="nav-text">如果输出类似</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%88%86%E5%8C%BA%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">10.</span> <span class="nav-text">将分区持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4swap%E5%88%86%E5%8C%BA%E9%85%8D%E7%BD%AE"><span class="nav-number">11.</span> <span class="nav-text">调整swap分区配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#swappiness%E9%85%8D%E7%BD%AE"><span class="nav-number">12.</span> <span class="nav-text">swappiness配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E4%BF%AE%E6%94%B9swappiness"><span class="nav-number">12.1.</span> <span class="nav-text">临时修改swappiness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BF%AE%E6%94%B9-%E6%8E%A8%E8%8D%90"><span class="nav-number">12.2.</span> <span class="nav-text">永久修改(推荐)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E7%BC%93%E5%AD%98%E8%AE%BE%E7%BD%AE"><span class="nav-number">13.</span> <span class="nav-text">调整缓存设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E5%9C%A8%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%E7%94%9F%E6%95%88"><span class="nav-number">13.1.</span> <span class="nav-text">只在当前会话生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E4%BF%AE%E6%94%B9-%E6%8E%A8%E8%8D%90-1"><span class="nav-number">13.2.</span> <span class="nav-text">永久修改(推荐)</span></a></li></ol></li></ol>
     </div>
 </div>
 
