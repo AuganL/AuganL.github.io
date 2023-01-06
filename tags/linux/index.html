@@ -195,7 +195,7 @@
             
                 <span>2020</span> -
             
-            2022
+            2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
                 &nbsp;<a href="/">Croy</a>
@@ -367,6 +367,16 @@
         document.addEventListener('pjax:complete', () => {
             KEEP.utils.pjaxProgressBarEnd();
             window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
+jax script'));
             KEEP.refresh();
         });
     });

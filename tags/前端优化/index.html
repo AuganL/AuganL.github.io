@@ -9,7 +9,7 @@
     
     <title>
         
-            谈谈对keep-alive的了解 |
+            Tag: 前端优化 |
         
         StephenX-hertz
     </title>
@@ -141,209 +141,42 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            <div class="article-title">
-                <span class="title-hover-animation">谈谈对keep-alive的了解</span>
-            </div>
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">Croy</span>
-                            
-                                <span class="author-label">Lv2</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            
-<div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        
-            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
-        
-        <span class="pc">2022-12-15 13:22:24</span>
-        <span class="mobile">2022-12-15 13:22</span>
-    </span>
-    
-        <span class="article-update-date article-meta-item">
-        <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-15 13:23:36</span>
-    </span>
-    
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Vue/">Vue</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content keep-markdown-body">
-                <h1 id="谈谈对keep-alive的了解"><a href="#谈谈对keep-alive的了解" class="headerlink" title="谈谈对keep-alive的了解"></a>谈谈对keep-alive的了解</h1><ul>
-<li>首先keep-alive是vue自带的一个组件</li>
-<li>功能：是用来缓存组件的，提升性能</li>
-<li>使用场景：<ul>
-<li>例如我们在一个列表点击进入详情页的场景下，会出现每次进入该小企业就需要请求该详情也对应的数据，但是为了性能考虑，减少多次点击同一个详情页多次请求同一个数据，我们就可以通过利用keep-alive来实现对组件的缓存，由于keep-alive在第一次进入的时候会执行beforeCreate、created、brforeMount、mounted、activated这几个生命周期，那么当第一次进入的时候在created阶段就对对应的列表项详情进行获取请求并标记，在后面重新进入该组件的时候由于该组件的生命周期不会再执行activated之前的操作了，所以就可以在activated阶段对标记进行比较如果是原来的列表项则不需要重新请求数据，如果与原来的列表项不同了则重新请求数据并更新标记，以此来提高性能。</li>
-</ul>
-</li>
-</ul>
-
-            </div>
-
-            
-                <div class="post-copyright-info">
-                    <div class="article-copyright-info-container">
-    <ul class="copyright-info-content">
-        <li>
-            <span class="type">Post title</span>：<span class="content">谈谈对keep-alive的了解</span>
-        </li>
-        <li>
-            <span class="type">Post author</span>：<span class="content">Croy</span>
-        </li>
-        <li>
-            <span class="type">Create time</span>：<span class="content">2022-12-15 13:22:24</span>
-        </li>
-        <li class="post-link">
-            <span class="type">Post link</span>：<span class="content">2022/12/15/谈谈对keep-alive的理解/</span>
-        </li>
-        <li>
-            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
-        </li>
-    </ul>
-</div>
-
-                </div>
-            
-
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Vue/">#Vue</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2022/12/15/websocket%E5%92%8CAjax%E7%9A%84%E5%8C%BA%E5%88%AB/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">websocket和Ajax的区别</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                               rel="next"
-                               href="/2022/12/15/%E5%85%B3%E4%BA%8Evue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8Ckeep-live/"
-                            >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">VUE生命周期和keep-alive小总结</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                                <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-            
-                <div class="comment-container">
-                    
-<div class="comments-container">
-    <div id="comments-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments"></i>&nbsp;Comments
-    </div>
-    
-        
-            
-
-
-
-        
-    
-</div>
-
-                </div>
-            
+    <div class="tag-container">
+        <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;前端优化
         </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%AF%B9keep-alive%E7%9A%84%E4%BA%86%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">谈谈对keep-alive的了解</span></a></li></ol>
-    </div>
+        <div class="tag-post-list">
+            
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[1]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/01/06/%E5%89%8D%E7%AB%AF%E7%99%BD%E5%B1%8F%E6%A3%80%E6%B5%8B/"
+                        >VUE生命周期和keep-alive小总结</a>
+                        <span class="article-date">01-06</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
 </div>
 
-            </div>
-        
+        </div>
+    </div>
+
+    <div class="tag-paginator">
+        <div class="paginator">
+    
+
+    
+</div>
+
     </div>
 </div>
 
@@ -391,28 +224,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item flex-center toggle-show-toc">
-                <i class="fas fa-list"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="tools-item flex-center go-to-comments">
-                <i class="fas fa-comment"></i>
-                <span class="post-comments-count"></span>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -524,20 +335,6 @@
 
 
 <div class="post-scripts pjax">
-    
-        
-<script src="/js/post-helper.js"></script>
-
-        
-            
-<script src="/js/libs/anime.min.js"></script>
-
-        
-        
-            
-<script src="/js/toc.js"></script>
-
-        
     
 </div>
 
