@@ -146,18 +146,24 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/12/15/cookie/">
-                        关于cookie的一些特性
+                    <a href="/2023/01/06/%E5%89%8D%E7%AB%AF%E7%99%BD%E5%B1%8F%E6%A3%80%E6%B5%8B/">
+                        前端白屏检测
                     </a>
                 </h3>
 
                 <div class="home-article-content keep-markdown-body">
                     
-                        什么是cookie
-cookie是由服务器端生成的通过请求发送给客户端的
-浏览器会将服务器端发送过来的cookie保存为某一个目录下的文件
-浏览器接收到cookie就会把这个cooki对象存入浏览器缓存中
-cookie实际上是一些信息，这些信息以文件...
+                        白屏检测的不确定性
+当白屏发生的时候，无法和具体的某个报错进行直接的联系，或者说根本就没有抛出异常
+导致白屏的原因：
+资源加载错误
+程序执行异常
+
+
+其次就是前端渲染的多样性，前端页面渲染的方式有多种
+客户端渲染CSR
+服务端渲染SSR
+静态页面生成...
                     
                 </div>
 
@@ -166,8 +172,8 @@ cookie实际上是一些信息，这些信息以文件...
     <div class="home-article-meta-info">
         <span>
             <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Dec 15 2022 11:37:45 GMT+0800">
-                2022-12-15
+            <span class="home-article-date" data-date="Fri Jan 06 2023 17:14:31 GMT+0800">
+                2023-01-06
             </span>
         </span>
         
@@ -177,6 +183,12 @@ cookie实际上是一些信息，这些信息以文件...
                         <li>
                             
                             <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/%E4%BC%98%E5%8C%96/">优化</a>&nbsp;
                         </li>
                     
                     
@@ -195,12 +207,17 @@ cookie实际上是一些信息，这些信息以文件...
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/">网络相关</a>&nbsp;
+                            <a href="/tags/Vue/">Vue</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/cookie/">cookie</a>&nbsp;
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/">前端优化</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%99%BD%E5%B1%8F%E6%A3%80%E6%B5%8B/">白屏检测</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -208,7 +225,7 @@ cookie实际上是一些信息，这些信息以文件...
         
     </div>
 
-    <a class="read-more" href="/2022/12/15/cookie/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a class="read-more" href="/2023/01/06/%E5%89%8D%E7%AB%AF%E7%99%BD%E5%B1%8F%E6%A3%80%E6%B5%8B/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -218,19 +235,20 @@ cookie实际上是一些信息，这些信息以文件...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/12/15/react/">
-                        React
+                    <a href="/2022/12/16/%E8%AE%BE%E7%BD%AEswep%E5%88%86%E5%8C%BA/">
+                        Ubuntu设置Swap分区
                     </a>
                 </h3>
 
                 <div class="home-article-content keep-markdown-body">
                     
-                        Hello React
-通过create-react-app创建一个react项目
+                        查看系统是否配置Swap1sudo swapon --show
 
-下面我们删除src下的所有文件，然后创建一个index.js文件（默认必须使用index命名）
+如果没有任何输出，表明系统没有配置swap
+查看系统存储空间1df -h
 
-接下来我们需要在index.js文件内引入react、react-...
+确保有足够的空间创建Swap分区
+创建分区文件1sudo fallocate -l 1G /swapfile...
                     
                 </div>
 
@@ -239,8 +257,8 @@ cookie实际上是一些信息，这些信息以文件...
     <div class="home-article-meta-info">
         <span>
             <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Dec 15 2022 11:34:22 GMT+0800">
-                2022-12-15
+            <span class="home-article-date" data-date="Fri Dec 16 2022 16:46:33 GMT+0800">
+                2022-12-16
             </span>
         </span>
         
@@ -249,7 +267,13 @@ cookie实际上是一些信息，这些信息以文件...
                     
                         <li>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                            <a href="/categories/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/Linux/ubuntu/">ubuntu</a>&nbsp;
                         </li>
                     
                     
@@ -263,12 +287,17 @@ cookie实际上是一些信息，这些信息以文件...
                     
                         <li>
                             
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/react/">react</a>&nbsp;
+                            <a href="/tags/ubuntu/">ubuntu</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/swap%E5%88%86%E5%8C%BA/">swap分区</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -276,7 +305,7 @@ cookie实际上是一些信息，这些信息以文件...
         
     </div>
 
-    <a class="read-more" href="/2022/12/15/react/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a class="read-more" href="/2022/12/16/%E8%AE%BE%E7%BD%AEswep%E5%88%86%E5%8C%BA/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -286,16 +315,16 @@ cookie实际上是一些信息，这些信息以文件...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/12/14/webpack/">
-                        关于webpack暴力笔记
+                    <a href="/2022/12/15/JavaScript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">
+                        JavaScript的事件循环机制
                     </a>
                 </h3>
 
                 <div class="home-article-content keep-markdown-body">
                     
-                        什么是webpackwebpack是一种前端资源构建工具，一个静态模块打包器（module bundler）
-在webpack角度看，前端的所有资源文件都会作为模板处理，webpack将工具模块的依赖关系进行静态分析，打包生成对应的静态资源。
-简述w...
+                        
+首先，JavaScript是单线程解释性的语言，那么在执行一段js程序的时候，当遇到异步任务&#x2F;耗时任务，那么这段程序就停下来等待耗时任务执行完成后再继续执行后续的程序，那么就会造成阻塞等待的问题。
+所以JavaScript引入了事件循环机...
                     
                 </div>
 
@@ -304,7 +333,7 @@ cookie实际上是一些信息，这些信息以文件...
     <div class="home-article-meta-info">
         <span>
             <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Dec 15 2022 11:28:45 GMT+0800">
+            <span class="home-article-date" data-date="Thu Dec 15 2022 13:43:17 GMT+0800">
                 2022-12-15
             </span>
         </span>
@@ -315,6 +344,12 @@ cookie实际上是一些信息，这些信息以文件...
                         <li>
                             
                             <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>&nbsp;
                         </li>
                     
                     
@@ -333,7 +368,17 @@ cookie实际上是一些信息，这些信息以文件...
                     
                         <li>
                             | 
-                            <a href="/tags/webpack/">webpack</a>&nbsp;
+                            <a href="/tags/JavaScript/">JavaScript</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -341,7 +386,7 @@ cookie实际上是一些信息，这些信息以文件...
         
     </div>
 
-    <a class="read-more" href="/2022/12/14/webpack/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a class="read-more" href="/2022/12/15/JavaScript%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -356,6 +401,10 @@ cookie实际上是一些信息，这些信息以文件...
         >Prev</a>
     
 
+    
+        <a class="next btn"
+           href="/page/6/"
+        >Next</a>
     
 </div>
 

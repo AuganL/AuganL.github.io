@@ -157,7 +157,7 @@
                         <div class="author">
                             <span class="name">Croy</span>
                             
-                                <span class="author-label">Lv2</span>
+                                <span class="author-label">Lv3</span>
                             
                         </div>
                         <div class="meta-info">
@@ -173,7 +173,7 @@
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-12-15 13:23:04</span>
+        <span class="pc">2023-02-02 22:03:54</span>
     </span>
     
     
@@ -264,14 +264,14 @@
 <p><strong>vm.$refs</strong></p>
 </blockquote>
 <ul>
-<li>获取页面中所有含有ref属性的DOM元素（如vm.$refs.btn，获取页面中含有属性<code>ref = &quot;btn&quot;</code>的DOM元素，如果有多个元素，那么只返回最后一个）</li>
+<li>获取页面中所有含有ref属性的DOM元素（如vm.$refs.btn，获取页面中含有属性 <code>ref = &quot;btn&quot;</code>的DOM元素，如果有多个元素，那么只返回最后一个）</li>
 </ul>
 <h2 id="在哪个阶段有-el-在哪个阶段会有-data"><a href="#在哪个阶段有-el-在哪个阶段会有-data" class="headerlink" title="在哪个阶段有$el,在哪个阶段会有$data"></a>在哪个阶段有$el,在哪个阶段会有$data</h2><ul>
 <li>首先$el代表着Vue实例所关联的Dom元素，$data代表着的是Vue实例所挂载的data对象</li>
 <li>然后我们知道在vue的生命周期中，在created阶段会对数据进行观测，所以在created阶段就会有$data的存在</li>
 <li>对于$el，由于在mounted被调用之前会将新创建的$el对象对原来的el挂载进行替换，所以真正意义上有$el的阶段是在mounted阶段</li>
 </ul>
-<h2 id="如果加入了keep-alive会多出两个生命周期"><a href="#如果加入了keep-alive会多出两个生命周期" class="headerlink" title="如果加入了keep-alive会多出两个生命周期"></a>如果加入了keep-alive会多出两个生命周期</h2><p>当我们的组件内部使用到<keep-alive>的时候会多出两个生命周期activated、deactivated</p>
+<h2 id="如果加入了keep-alive会多出两个生命周期"><a href="#如果加入了keep-alive会多出两个生命周期" class="headerlink" title="如果加入了keep-alive会多出两个生命周期"></a>如果加入了keep-alive会多出两个生命周期</h2><p>当我们的组件内部使用到<code>&lt;keep-alive&gt;</code>的时候会多出两个生命周期activated、deactivated</p>
 <h2 id="如果加入了keep-alive，第一次进入组件会执行哪些生命周期"><a href="#如果加入了keep-alive，第一次进入组件会执行哪些生命周期" class="headerlink" title="如果加入了keep-alive，第一次进入组件会执行哪些生命周期"></a>如果加入了keep-alive，第一次进入组件会执行哪些生命周期</h2><ul>
 <li>beforeCreate</li>
 <li>created</li>
