@@ -9,7 +9,7 @@
     
     <title>
         
-            浏览器的渲染机制 |
+            浏览器的缓冲机制 |
         
         StephenX-hertz
     </title>
@@ -145,7 +145,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">浏览器的渲染机制</span>
+                <span class="title-hover-animation">浏览器的缓冲机制</span>
             </div>
 
             
@@ -167,13 +167,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2023-02-02 22:46:27</span>
-        <span class="mobile">2023-02-02 22:46</span>
+        <span class="pc">2023-02-02 22:48:24</span>
+        <span class="mobile">2023-02-02 22:48</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2023-02-02 22:47:52</span>
+        <span class="pc">2023-02-02 22:49:00</span>
     </span>
     
     
@@ -225,60 +225,88 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h3 id="浏览器是如何渲染页面的"><a href="#浏览器是如何渲染页面的" class="headerlink" title="浏览器是如何渲染页面的"></a>浏览器是如何渲染页面的</h3><ul>
-<li>解析html结构创建DOM树</li>
-<li>解析CSS结构创建CSSOM树</li>
-<li>将DOM树和CSSOM树整合在一起形成一个渲染树</li>
-<li>根据渲染树的每个节点进行计算来反应页面的布局</li>
-<li>调用GPU对页面进行绘制合成图层，显示页面</li>
+                <h3 id="http缓存的好处"><a href="#http缓存的好处" class="headerlink" title="http缓存的好处"></a>http缓存的好处</h3><ul>
+<li>减少了冗余的数据传输</li>
+<li>减小服务器端的压力</li>
+<li>web缓存可以减少延迟和网路阻塞从而减少一些资源加载的时间</li>
+<li>加快客户端加载页面的速度</li>
 </ul>
-<p><img src="https://s.poetries.work/gitee/2019/10/19.png" alt="img"></p>
-<h3 id="页面渲染的发生"><a href="#页面渲染的发生" class="headerlink" title="页面渲染的发生"></a>页面渲染的发生</h3><ul>
-<li><p>在页面生成的时候，至少会渲染一次</p>
-</li>
-<li><p>用户访问页面的过程中也会不断重复渲染</p>
+<h3 id="常见-http-缓存的类型"><a href="#常见-http-缓存的类型" class="headerlink" title="常见 http 缓存的类型"></a>常见 http 缓存的类型</h3><ul>
+<li>私有缓存（一般为本地浏览器缓存）</li>
+<li>代理缓存</li>
+</ul>
+<h3 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h3><blockquote>
+<p>浏览器本地缓存是指浏览器在第一次请求资源之后会将资源和对应的响应头信息缓存下来，作为第二次发起请求的时候先去本地缓存检查上一次服务端返回的响应头信息中的<code>Cache-Control</code>以及检查是否存在未过期的本地缓存资源，如果有则表示命中缓存并调出使用不需要做资源请求</p>
+<p>如果没有命中缓存，则浏览器会把请求发给服务器并加入协商缓存</p>
+</blockquote>
+<p><strong>与本地缓存相关的头有：<code>Cache-Control</code>、<code>Expires</code>，<code>Cache-Control</code>有多个可选值代表不同的意义，而<code>Expires</code>就是一个日期格式的绝对值。</strong></p>
+<h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><blockquote>
+<p> <strong>Cache-Control</strong>是http的缓存策略中最重要的头信息</p>
+</blockquote>
+<p> <strong>Cache-Control</strong>的值</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">值</td>
+<td align="left">描述</td>
+</tr>
+<tr>
+<td align="left">no-cache</td>
+<td align="left">不使用本地缓存，需要协商缓存，先与服务器确认返回的响应是否被更改，如果之前的响应中存在<code>ETag</code>，那么请求的时候会与服务器验证，如果资源未被更改，则可以避免重新下载</td>
+</tr>
+<tr>
+<td align="left">no-store</td>
+<td align="left">直接禁止浏览器缓存数据，每次用户请求改资源都会向服务器发送请求并下载完整资源</td>
+</tr>
+<tr>
+<td align="left">public</td>
+<td align="left">可以被所有用户缓存，包括终端用户以及CDN等中间代理服务器</td>
+</tr>
+<tr>
+<td align="left">private</td>
+<td align="left">只能被终端用户的浏览器缓存，不允许CDN等中间缓存服务器缓存</td>
+</tr>
+<tr>
+<td align="left">max-age</td>
+<td align="left">从当前请求开始，预习获取的响应被重用的最长时间</td>
+</tr>
+<tr>
+<td align="left">must-revalidate</td>
+<td align="left">当缓存过去的时候，需要去服务端校验缓存的有效性</td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>重新渲染需要重复之前的（重新生成布局）和（重新绘制）或者只需要（重新绘制）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: public, max-age=1000 </span><br><span class="line"><span class="comment"># 表示资源可以被所有用户以及代理服务器缓存，最长时间为1000秒。</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-</li>
-<li><p>在构建 <code>CSSOM</code> 树时，会阻塞渲染，直至 <code>CSSOM</code>树构建完成。并且构建 <code>CSSOM</code> 树是一个十分消耗性能的过程，所以应该尽量保证层级扁平，减少过度层叠，越是具体的 <code>CSS</code> 选择器，执行速度越慢</p>
-</li>
-<li><p>当 <code>HTML</code> 解析到 <code>script</code> 标签时，会暂停构建 <code>DOM</code>，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 <code>JS</code> 文件。并且<code>CSS</code>也会影响 <code>JS</code> 的执行，只有当解析完样式表才会执行 <code>JS</code>，所以也可以认为这种情况下，<code>CSS</code> 也会暂停构建 <code>DOM</code></p>
-</li>
-</ul>
-<h3 id="详解浏览器渲染的五个阶段"><a href="#详解浏览器渲染的五个阶段" class="headerlink" title="详解浏览器渲染的五个阶段"></a>详解浏览器渲染的五个阶段</h3><h4 id="第一阶段：解析html，构建DOM树"><a href="#第一阶段：解析html，构建DOM树" class="headerlink" title="第一阶段：解析html，构建DOM树"></a>第一阶段：解析html，构建DOM树</h4><blockquote>
-<p>在这个阶段，浏览器开始解析html，解析结果会生成一颗DOM树</p>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><blockquote>
+<p><strong><code>Expires</code>是<code>HTTP/1.0</code>出现的头信息，同样是用于决定本地缓存策略的头，它是一个绝对时间，时间格式是如<code>Mon, 10 Jun 2015 21:31:12 GMT</code>，只要发送请求时间是在<code>Expires</code>之前，那么本地缓存始终有效，否则就会去服务器发送请求获取新的资源。如果同时出现<code>Cache-Control：max-age</code>和<code>Expires</code>，那么<code>max-age</code>优先级更高。他们可以这样组合使用</strong></p>
 </blockquote>
-<p><strong>生成DOM树的目的：</strong></p>
+<h3 id="浏览器缓存总结"><a href="#浏览器缓存总结" class="headerlink" title="浏览器缓存总结"></a>浏览器缓存总结</h3><blockquote>
+<p>浏览器缓存分为强缓存和协商缓存。当客户端请求某个资源时，获取缓存的流程如下</p>
+</blockquote>
 <ul>
-<li>作为下一阶段渲染树状图的输入</li>
-<li>作为我也和脚本的交互界面，实现页面操作</li>
+<li>先根据这个资源的一些 http header 判断它是否命中强缓存，先检查<code>Cache-Control</code>，如果命中，则直接从本地获取缓存资源，不会发请求到服务器；</li>
+<li>当强缓存没有命中时，客户端会发送请求到服务器，服务器通过另一些request header验证这个资源是否命中协商缓存，称为http再验证，如果命中，服务器将请求返回，但不返回资源，而是返回304告诉客户端直接从缓存中获取，客户端收到返回后就会从缓存中获取资源；（服务器通过请求头中的<code>If-Modified-Since</code>或者<code>If-None-Match</code>字段检查资源是否更新）</li>
+<li>强缓存和协商缓存共同之处在于，如果命中缓存，服务器都不会返回资源； 区别是，强缓存不对发送请求到服务器，但协商缓存会。</li>
+<li>当协商缓存也没命中时，服务器就会将资源发送回客户端。</li>
+<li>当 ctrl+f5 强制刷新网页时，直接从服务器加载，跳过强缓存和协商缓存；</li>
+<li>当 f5刷新网页时，跳过强缓存，但是会检查协商缓存；</li>
 </ul>
-<p><strong>解析过程遇到script标签的时候会发生：</strong></p>
-<ul>
-<li>html的解析停止</li>
-<li>如果遇到的是外部的script，就从外部网络获取脚本代码</li>
-<li>JavaScript引擎执行js代码</li>
-<li>控制权回到html解析器，继续解析html结构</li>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a><strong>强缓存</strong></h3><ul>
+<li>Expires（该字段是 http1.0 时的规范，值为一个绝对时间的 GMT 格式的时间字符串，代表缓存资源的过期时间）</li>
+<li>Cache-Control:max-age（该字段是 http1.1的规范，强缓存利用其 max-age 值来判断缓存资源的最大生命周期，它的值单位为秒）</li>
 </ul>
-<blockquote>
-<p><strong>这里对于html解析进程被阻塞可以考虑一下script标签内的async和defer属性</strong></p>
-<ul>
-<li>加入async属性后，程序执行时，外部引用的js文件内容和html中的代码同时进行。在这里需要注意，因为代码的执行速度不同，显示的效果有可能不同，在此是js内容被下载完成后立即执行。</li>
-<li>defer也会异步的下载去执行js内容</li>
-<li>defer和async的区别就是defer下载完js的内容后不会立即执行,直到html文档加载解析完成后才执行</li>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a><strong>协商缓存</strong></h3><ul>
+<li>Last-Modified（值为资源最后更新时间，随服务器response返回，即使文件改回去，日期也会变化）</li>
+<li>If-Modified-Since（通过比较两个时间来判断资源在两次请求期间是否有过修改，如果没有修改，则命中协商缓存）</li>
+<li>ETag（表示资源内容的唯一标识，随服务器response返回，仅根据文件内容是否变化判断）</li>
+<li>If-None-Match（服务器通过比较请求头部的If-None-Match与当前资源的ETag是否一致来判断资源是否在两次请求之间有过修改，如果没有修改，则命中协商缓存）</li>
 </ul>
-</blockquote>
-<h4 id="第二阶段：解析CSS，构建CSSOM树"><a href="#第二阶段：解析CSS，构建CSSOM树" class="headerlink" title="第二阶段：解析CSS，构建CSSOM树"></a>第二阶段：解析CSS，构建CSSOM树</h4><blockquote>
-<p>CSSOM树构建过程中，必须等到CSSOM树建立好之后才会进行下一步的解析渲染</p>
-</blockquote>
-<h4 id="第三阶段：把DOM和CSSOM组合成渲染树（render-tree）"><a href="#第三阶段：把DOM和CSSOM组合成渲染树（render-tree）" class="headerlink" title="第三阶段：把DOM和CSSOM组合成渲染树（render tree）"></a>第三阶段：把DOM和CSSOM组合成渲染树（render tree）</h4><p><img src="https://s.poetries.work/gitee/2019/10/21.png" alt="img"></p>
-<h4 id="第四阶段：在渲染树的基础上进行布局，计算节点结构"><a href="#第四阶段：在渲染树的基础上进行布局，计算节点结构" class="headerlink" title="第四阶段：在渲染树的基础上进行布局，计算节点结构"></a>第四阶段：在渲染树的基础上进行布局，计算节点结构</h4><blockquote>
-<p>布局(<code>layout</code>)：定位坐标和大小，是否换行，各种<code>position</code>, <code>overflow</code>, <code>z-index</code>属性</p>
-</blockquote>
-<h4 id="第五阶段：调用GPU绘制，合成图层显示"><a href="#第五阶段：调用GPU绘制，合成图层显示" class="headerlink" title="第五阶段：调用GPU绘制，合成图层显示"></a>第五阶段：调用GPU绘制，合成图层显示</h4><blockquote>
-<p>将渲染树的各个节点绘制到屏幕上，这一步被称为绘制<code>painting</code></p>
-</blockquote>
 
             </div>
 
@@ -287,16 +315,16 @@
                     <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
         <li>
-            <span class="type">Post title</span>：<span class="content">浏览器的渲染机制</span>
+            <span class="type">Post title</span>：<span class="content">浏览器的缓冲机制</span>
         </li>
         <li>
             <span class="type">Post author</span>：<span class="content">Croy</span>
         </li>
         <li>
-            <span class="type">Create time</span>：<span class="content">2023-02-02 22:46:27</span>
+            <span class="type">Create time</span>：<span class="content">2023-02-02 22:48:24</span>
         </li>
         <li class="post-link">
-            <span class="type">Post link</span>：<span class="content">2023/02/02/浏览器的渲染机制/</span>
+            <span class="type">Post link</span>：<span class="content">2023/02/02/浏览器的缓存机制/</span>
         </li>
         <li>
             <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
@@ -324,29 +352,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2023/02/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">浏览器的缓冲机制</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2023/02/02/Chrome%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%90%AF%E5%8A%A8%E5%93%AA%E4%BA%9B%E8%BF%9B%E7%A8%8B/"
+                               href="/2023/02/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Chrome打开一个页面需要启动哪些进程</span>
+                                <span class="post-nav-title-item">浏览器的渲染机制</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -384,7 +397,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">浏览器是如何渲染页面的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E5%8F%91%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">页面渲染的发生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E4%BA%94%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">3.</span> <span class="nav-text">详解浏览器渲染的五个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%A7%A3%E6%9E%90html%EF%BC%8C%E6%9E%84%E5%BB%BADOM%E6%A0%91"><span class="nav-number">3.1.</span> <span class="nav-text">第一阶段：解析html，构建DOM树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%A7%A3%E6%9E%90CSS%EF%BC%8C%E6%9E%84%E5%BB%BACSSOM%E6%A0%91"><span class="nav-number">3.2.</span> <span class="nav-text">第二阶段：解析CSS，构建CSSOM树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%8A%8ADOM%E5%92%8CCSSOM%E7%BB%84%E5%90%88%E6%88%90%E6%B8%B2%E6%9F%93%E6%A0%91%EF%BC%88render-tree%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">第三阶段：把DOM和CSSOM组合成渲染树（render tree）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9C%A8%E6%B8%B2%E6%9F%93%E6%A0%91%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E8%BF%9B%E8%A1%8C%E5%B8%83%E5%B1%80%EF%BC%8C%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">第四阶段：在渲染树的基础上进行布局，计算节点结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%B0%83%E7%94%A8GPU%E7%BB%98%E5%88%B6%EF%BC%8C%E5%90%88%E6%88%90%E5%9B%BE%E5%B1%82%E6%98%BE%E7%A4%BA"><span class="nav-number">3.5.</span> <span class="nav-text">第五阶段：调用GPU绘制，合成图层显示</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E7%BC%93%E5%AD%98%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">1.</span> <span class="nav-text">http缓存的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81-http-%E7%BC%93%E5%AD%98%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">常见 http 缓存的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">本地缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control"><span class="nav-number">3.1.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expires"><span class="nav-number">3.2.</span> <span class="nav-text">Expires</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">浏览器缓存总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="nav-number">6.</span> <span class="nav-text">协商缓存</span></a></li></ol>
     </div>
 </div>
 
