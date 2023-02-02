@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Croy">
+    
+    <title>
+        
+            浏览器的渲染机制 |
+        
+        StephenX-hertz
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.jpg">
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.jpg","favicon":"/images/logo.jpg","avatar":"/images/logo.jpg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"header_transparent":false,"background_img":"/images/bg.svg","description":"真正的英雄主义 || 是在认清生活本质之后,依然热爱生活","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":false},"comment":{"enable":true,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               StephenX-hertz
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">浏览器的渲染机制</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Croy</span>
+                            
+                                <span class="author-label">Lv3</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-02-02 22:46:27</span>
+        <span class="mobile">2023-02-02 22:46</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-02-02 22:47:52</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h3 id="浏览器是如何渲染页面的"><a href="#浏览器是如何渲染页面的" class="headerlink" title="浏览器是如何渲染页面的"></a>浏览器是如何渲染页面的</h3><ul>
+<li>解析html结构创建DOM树</li>
+<li>解析CSS结构创建CSSOM树</li>
+<li>将DOM树和CSSOM树整合在一起形成一个渲染树</li>
+<li>根据渲染树的每个节点进行计算来反应页面的布局</li>
+<li>调用GPU对页面进行绘制合成图层，显示页面</li>
+</ul>
+<p><img src="https://s.poetries.work/gitee/2019/10/19.png" alt="img"></p>
+<h3 id="页面渲染的发生"><a href="#页面渲染的发生" class="headerlink" title="页面渲染的发生"></a>页面渲染的发生</h3><ul>
+<li><p>在页面生成的时候，至少会渲染一次</p>
+</li>
+<li><p>用户访问页面的过程中也会不断重复渲染</p>
+<blockquote>
+<p>重新渲染需要重复之前的（重新生成布局）和（重新绘制）或者只需要（重新绘制）</p>
+</blockquote>
+</li>
+<li><p>在构建 <code>CSSOM</code> 树时，会阻塞渲染，直至 <code>CSSOM</code>树构建完成。并且构建 <code>CSSOM</code> 树是一个十分消耗性能的过程，所以应该尽量保证层级扁平，减少过度层叠，越是具体的 <code>CSS</code> 选择器，执行速度越慢</p>
+</li>
+<li><p>当 <code>HTML</code> 解析到 <code>script</code> 标签时，会暂停构建 <code>DOM</code>，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 <code>JS</code> 文件。并且<code>CSS</code>也会影响 <code>JS</code> 的执行，只有当解析完样式表才会执行 <code>JS</code>，所以也可以认为这种情况下，<code>CSS</code> 也会暂停构建 <code>DOM</code></p>
+</li>
+</ul>
+<h3 id="详解浏览器渲染的五个阶段"><a href="#详解浏览器渲染的五个阶段" class="headerlink" title="详解浏览器渲染的五个阶段"></a>详解浏览器渲染的五个阶段</h3><h4 id="第一阶段：解析html，构建DOM树"><a href="#第一阶段：解析html，构建DOM树" class="headerlink" title="第一阶段：解析html，构建DOM树"></a>第一阶段：解析html，构建DOM树</h4><blockquote>
+<p>在这个阶段，浏览器开始解析html，解析结果会生成一颗DOM树</p>
+</blockquote>
+<p><strong>生成DOM树的目的：</strong></p>
+<ul>
+<li>作为下一阶段渲染树状图的输入</li>
+<li>作为我也和脚本的交互界面，实现页面操作</li>
+</ul>
+<p><strong>解析过程遇到script标签的时候会发生：</strong></p>
+<ul>
+<li>html的解析停止</li>
+<li>如果遇到的是外部的script，就从外部网络获取脚本代码</li>
+<li>JavaScript引擎执行js代码</li>
+<li>控制权回到html解析器，继续解析html结构</li>
+</ul>
+<blockquote>
+<p><strong>这里对于html解析进程被阻塞可以考虑一下script标签内的async和defer属性</strong></p>
+<ul>
+<li>加入async属性后，程序执行时，外部引用的js文件内容和html中的代码同时进行。在这里需要注意，因为代码的执行速度不同，显示的效果有可能不同，在此是js内容被下载完成后立即执行。</li>
+<li>defer也会异步的下载去执行js内容</li>
+<li>defer和async的区别就是defer下载完js的内容后不会立即执行,直到html文档加载解析完成后才执行</li>
+</ul>
+</blockquote>
+<h4 id="第二阶段：解析CSS，构建CSSOM树"><a href="#第二阶段：解析CSS，构建CSSOM树" class="headerlink" title="第二阶段：解析CSS，构建CSSOM树"></a>第二阶段：解析CSS，构建CSSOM树</h4><blockquote>
+<p>CSSOM树构建过程中，必须等到CSSOM树建立好之后才会进行下一步的解析渲染</p>
+</blockquote>
+<h4 id="第三阶段：把DOM和CSSOM组合成渲染树（render-tree）"><a href="#第三阶段：把DOM和CSSOM组合成渲染树（render-tree）" class="headerlink" title="第三阶段：把DOM和CSSOM组合成渲染树（render tree）"></a>第三阶段：把DOM和CSSOM组合成渲染树（render tree）</h4><p><img src="https://s.poetries.work/gitee/2019/10/21.png" alt="img"></p>
+<h4 id="第四阶段：在渲染树的基础上进行布局，计算节点结构"><a href="#第四阶段：在渲染树的基础上进行布局，计算节点结构" class="headerlink" title="第四阶段：在渲染树的基础上进行布局，计算节点结构"></a>第四阶段：在渲染树的基础上进行布局，计算节点结构</h4><blockquote>
+<p>布局(<code>layout</code>)：定位坐标和大小，是否换行，各种<code>position</code>, <code>overflow</code>, <code>z-index</code>属性</p>
+</blockquote>
+<h4 id="第五阶段：调用GPU绘制，合成图层显示"><a href="#第五阶段：调用GPU绘制，合成图层显示" class="headerlink" title="第五阶段：调用GPU绘制，合成图层显示"></a>第五阶段：调用GPU绘制，合成图层显示</h4><blockquote>
+<p>将渲染树的各个节点绘制到屏幕上，这一步被称为绘制<code>painting</code></p>
+</blockquote>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li>
+            <span class="type">Post title</span>：<span class="content">浏览器的渲染机制</span>
+        </li>
+        <li>
+            <span class="type">Post author</span>：<span class="content">Croy</span>
+        </li>
+        <li>
+            <span class="type">Create time</span>：<span class="content">2023-02-02 22:46:27</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>：<span class="content">2023/02/02/浏览器的渲染机制/</span>
+        </li>
+        <li>
+            <span class="type">Copyright Notice</span>：<span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">#浏览器</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/02/02/Chrome%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%90%AF%E5%8A%A8%E5%93%AA%E4%BA%9B%E8%BF%9B%E7%A8%8B/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Chrome打开一个页面需要启动哪些进程</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">浏览器是如何渲染页面的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E5%8F%91%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">页面渲染的发生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E4%BA%94%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">3.</span> <span class="nav-text">详解浏览器渲染的五个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%A7%A3%E6%9E%90html%EF%BC%8C%E6%9E%84%E5%BB%BADOM%E6%A0%91"><span class="nav-number">3.1.</span> <span class="nav-text">第一阶段：解析html，构建DOM树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%A7%A3%E6%9E%90CSS%EF%BC%8C%E6%9E%84%E5%BB%BACSSOM%E6%A0%91"><span class="nav-number">3.2.</span> <span class="nav-text">第二阶段：解析CSS，构建CSSOM树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%8A%8ADOM%E5%92%8CCSSOM%E7%BB%84%E5%90%88%E6%88%90%E6%B8%B2%E6%9F%93%E6%A0%91%EF%BC%88render-tree%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">第三阶段：把DOM和CSSOM组合成渲染树（render tree）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9C%A8%E6%B8%B2%E6%9F%93%E6%A0%91%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E8%BF%9B%E8%A1%8C%E5%B8%83%E5%B1%80%EF%BC%8C%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">第四阶段：在渲染树的基础上进行布局，计算节点结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%B0%83%E7%94%A8GPU%E7%BB%98%E5%88%B6%EF%BC%8C%E5%90%88%E6%88%90%E5%9B%BE%E5%B1%82%E6%98%BE%E7%A4%BA"><span class="nav-number">3.5.</span> <span class="nav-text">第五阶段：调用GPU绘制，合成图层显示</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Croy</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-block.js"></script>
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
+        
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
